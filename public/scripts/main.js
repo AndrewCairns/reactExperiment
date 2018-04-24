@@ -1,71 +1,74 @@
-console.log('Running');
-
-const app = {
+const appData = {
 	title: 'The title',
 	subtitle: 'My subtitle',
-	options: ['One', 'Two']
+	options: []
 };
 
-//JSX - Javascript XML
-const template = (
-	<div>
-		
-		{app.title && <h1>{app.title}</h1>}
-		{app.subtitle && <h2>{app.subtitle}</h2>}
-		<p>{app.options.length > 0 ? "Here are options" : "No options"}</p>
-	</div>
-);	//template to be added to DOM
+const onFormSubmit = (e) => {
+	e.preventDefault();
+	console.log("form submitted")
+
+	const option = e.target.elements.option.value;
+
+	if (option){
+		appData.options.push(option);
+		e.target.elements.option.value = '';
+		render();
+	}
+}
 
 
+const onRemoveAll = () => {
+	appData.options = [];
+	render();
+}
 
+const onMakeDecision = () => {
+	const randomNum = Math.floor(Math.random() * appData.options.length);
+	const option = appData.options[randomNum];
+	alert(option);
+}
 
-
-
-
-
-//counter example
-let count = 0;
-const addOne = () => {
-	count++;
-	renderCounterApp();
-};
-const subOne = () => {
-	count--;
-	renderCounterApp();
-};
-const reset = () => {
-	count = 0;
-	renderCounterApp();
-};
+const numbers = [55, 101, 1000];
 
 
 
 const appRoot = document.getElementById('app');		//appending it to the DOM
 
-
-const renderCounterApp =  () => {
-	const templateTwo = (
+const render = () => {
+	//JSX - Javascript XML
+	const template = (
 		<div>
-			<h1>Count: {count} </h1>
-			<button onClick={addOne} > + 1 </button>
-			<button onClick={subOne} > - 1 </button>
-			<button onClick={reset} > 0 </button>
+			
+			{appData.title && <h1>{appData.title}</h1>}
+			{appData.subtitle && <h2>{appData.subtitle}</h2>}
+			<p>{appData.options.length > 0 ? "Here are options" : "No options"}</p>
+			
+			<button disabled={appData.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
+			<button onClick={onRemoveAll}>Remove all</button>
+
+			<ol>
+				{ 
+					appData.options.map((option, index)	=> {
+						return <li key={index}>{option}</li>
+					})
+				}
+			</ol>
+
+
+
+			<form onSubmit={onFormSubmit}>
+				<input type="text" name="option" />
+				<button>Add button</button>
+			</form>
 		</div>
-	);
-	
-	ReactDOM.render(templateTwo, appRoot);
-}
+	);	//template to be added to DOM
 
-renderCounterApp();
+	ReactDOM.render(template, appRoot);
 
+};
 
 
 
 
-
-
-
-
-
-
-
+render();
