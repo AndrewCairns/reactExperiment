@@ -86,7 +86,8 @@ gulp.task('scripts', function(){
 		}))
 		.pipe(sourcemaps.init())							//creates map to allow debugging
 		.pipe(babel({
-			presets: ['env']
+			presets: ['env'],
+      plugins: ['transform-react-jsx']
 		}))												
 		.pipe(uglify())												//call uglify module on these files
 		.pipe(concat('scripts.js'))					//concats all js files into one

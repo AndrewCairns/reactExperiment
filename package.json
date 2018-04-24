@@ -12,6 +12,7 @@
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
@@ -19,6 +20,7 @@
     "gulp-clean-css": "^3.9.3",
     "gulp-concat": "^2.6.1",
     "gulp-imagemin": "^4.1.0",
+    "gulp-live-server": "0.0.31",
     "gulp-livereload": "^3.8.1",
     "gulp-plumber": "^1.2.0",
     "gulp-sass": "^4.0.1",
@@ -27,8 +29,5 @@
     "imagemin-jpeg-recompress": "^5.1.0",
     "imagemin-pngquant": "^5.1.0",
     "static-server": "^2.2.1"
-  },
-  "dependencies": {
-    "gulp-live-server": "0.0.31"
   }
 }
